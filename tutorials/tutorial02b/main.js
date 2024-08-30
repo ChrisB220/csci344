@@ -16,6 +16,7 @@ function setup() {
     drawNShapesFlexible(10, 30, 800, 600, "square");
     drawNShapesDirectionFlexible(15, 30, 1500, 100, "circle", "row");
     drawNShapesDirectionFlexible(8, 40, 1300, 300, "square", "ahhh");
+    // dominoSquares();
     drawGrid(canvasWidth, canvasHeight);
 }
 
@@ -122,3 +123,18 @@ function drawNShapesDirectionFlexible(n, size, x, y, shape, direction)
         }
     }
 }
+
+function dominoSquares()
+{
+        fill("orange");
+        console.log("Hi");
+        for(let i = 0; i <= 1800; i = i + 100)
+        {
+            for(let j = 0; j <= 900; j = j + 100)
+            {
+                square(i, j, 100);
+            }
+        }
+    
+}
+
