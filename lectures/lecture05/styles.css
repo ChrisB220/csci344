@@ -1,0 +1,15 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Your code here */
+body * {
+    border: solid 1px black;
+    padding: 5px;
+    display:inline-block;
+}
+
+header
+{
+    background-color: yellow;
+}
