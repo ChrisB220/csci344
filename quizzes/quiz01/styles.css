@@ -58,7 +58,7 @@ h1, h2 {
     border: solid grey 1px;
 }
 
-img {
+.cards > img {
     width: 200px;
     height: 200px;
 }
