@@ -36,7 +36,7 @@ const data = [
             Honors: false,
             Arts: false,
             ServiceLearning: false,
-            Open: true,
+            Open: false,
         },
         AdditionalMeetings: [],
         InstructionalMethod: "In-Person",

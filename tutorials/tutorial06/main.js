@@ -30,15 +30,17 @@ const search = (ev) => {
 };
 
 // Part 1.1a
-// const filterClassFull = (course) => {
+// const filterTermMatched = (course) => {
 //     // modify this
 //     return true;
 // };
 
 // Part 1.1b
-const filterTermMatched = (course) => {
-    // modify this
-    return true;
+const filterClassFull = (course) => {
+    if(course.Classification.Open) {
+        return true;
+    }
+    return false;
 };
 
 // Part 1.2
@@ -48,15 +50,14 @@ const dataToHTML = (course) => {
         <section class="course">
             <h2>${course.Code} ${course.Title}</h2>
             <p>
-                <i class="fa-solid fa-circle-check"></i> 
-                ${course.Classification.Open}  &bull; 10174 &bull; Seats Available: ${course.EnrollmentMax - course.EnrollmentCurrent}
+                ${showAvailability(course)} ${course.CRN} &bull; Seats Available: ${course.EnrollmentMax - course.EnrollmentCurrent}
             </p>
             <p>
                 ${showDays(course)} 
                 ${course.Location.FullLocation} &bull; 
                 ${course.Hours} credit hour(s)
             </p>
-            <p><strong>${course.Instructors}</strong></p>
+            <p><strong>${course.Instructors[0].Name}</strong></p>
         </section>
     `;
 };
@@ -66,6 +67,13 @@ const showDays = (course) => {
         return `${course.Days} &bull; `;
     }
     return "TBD"
+}
+
+const showAvailability = (course) => {
+    if(course.Classification.Open) {
+        return '<i class="fa-solid fa-circle-check"></i> Open  &bull; ';
+    }
+    return '<i class="fa-solid fa-circle-xmark"></i> Closed &bull; '
 }
 
 
@@ -91,12 +99,16 @@ const showData = (searchTerm, openOnly) => {
         }
         return false;
     }
+
+
     // before appending new snippets
     // you want to clear things out
-    // first filter the data
-    //then, with the matching results
-    // display each result to the DOM:
-
     document.querySelector(".courses").innerHTML = "";
-    data.filter(searchTermMatch).forEach(addCourseToDOM);
+
+    // first filter the data
+    // then, with the matching results
+    // display each result to the DOM:
+    if(openOnly) data.filter(filterClassFull).filter(searchTermMatch).forEach(addCourseToDOM);
+
+    else data.filter(searchTermMatch).forEach(addCourseToDOM);
 };
